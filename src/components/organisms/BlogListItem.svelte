@@ -116,7 +116,7 @@
 </script>
 
 <article class={style.container}>
-    <a href="/">
+    <a href={`https://velog.io/@${data.user.username}/${data.url_slug}`}>
         {#if data.thumbnail}
             <div class={style.imgWrapper}>
                 <img src={data.thumbnail} alt="">
@@ -132,7 +132,7 @@
         </div>
     </a>
     <div class={style.footer}>
-        <a href="/">
+        <a href={`https://velog.io/@${data.user.username}/posts`}>
            <span> by <b>{data.user.profile.display_name}</b></span>
         </a>
         <span class={style.heartWrapper}>
