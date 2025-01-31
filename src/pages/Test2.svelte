@@ -51,7 +51,7 @@
     <a class:selected={selectedNumber === 3} use:link href="/test2/feed">피드</a>
 </nav>
 
-<style lang="scss">
+<style>
     .container {
         width: fit-content;
         position: relative;

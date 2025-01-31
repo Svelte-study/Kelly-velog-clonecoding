@@ -1,4 +1,3 @@
-<!-- TODO :: 수정 - Routing에 따른 이동이 이상해보이뮤ㅠ  -->
 <script lang="ts">
     import { css } from "@emotion/css";
     import { navigate, useLocation } from 'svelte-routing';
@@ -11,9 +10,22 @@
     const validType = ["trending", "recent", "feed"];
     const validSort = ["day", "week", "month", "year"];
     const location = useLocation();
+    let currentPath = $location.pathname;
+
     const slug = $location.pathname.split("/")
     let [_, type, sort] = slug
-    $: selectedNumber = (type === "trending") ? 1 : (type === "recent") ? 2 : (type === "feed") ? 3 : 1;
+    const getSelectedNumber = ()=> (type === "trending") ? 1 : (type === "recent") ? 2 : (type === "feed") ? 3 : 1;
+
+    let selectedNumber:number =  getSelectedNumber();
+
+    $:{
+        if (currentPath !== $location.pathname) {
+            currentPath = $location.pathname;
+            const slug = currentPath.split("/");
+            [_, type, sort] = slug;
+            selectedNumber = getSelectedNumber();
+        }
+    };
 
     const checkUrl = () => {
         if(type === '') type = 'trending';
@@ -66,12 +78,10 @@
             }
         `
     }
-    $:console.log(selectedNumber)
-    $: navClass = style.container(selectedNumber);
 
 </script>
 
-<nav class={navClass}>
+<nav class={style.container(selectedNumber)}>
     <NavButton type="ICONTEXT" src={TrendingIcon} label="트렌딩" href="/trending/week"/>
     <NavButton type="ICONTEXT" src={RecentIcon} label="최신" href="/recent"/>
     <NavButton type="ICONTEXT" src={FeedIcon} label="피드" href="/feed"/>
