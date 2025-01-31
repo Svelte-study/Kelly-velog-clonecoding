@@ -13,7 +13,7 @@
     const location = useLocation();
     const slug = $location.pathname.split("/")
     let [_, type, sort] = slug
-    let selectedNumber = (type === "trending") ? 1 : (type === "recent") ? 2 : (type === "feed") ? 3 : 1;
+    $: selectedNumber = (type === "trending") ? 1 : (type === "recent") ? 2 : (type === "feed") ? 3 : 1;
 
     const checkUrl = () => {
         if(type === '') type = 'trending';
@@ -27,7 +27,7 @@
     checkUrl()
 
     const style = {
-        container: css`
+        container: (selectedNumber:number)=> css`
             width: fit-content;
             position: relative;
             &::after{
@@ -66,10 +66,12 @@
             }
         `
     }
+    $:console.log(selectedNumber)
+    $: navClass = style.container(selectedNumber);
 
 </script>
 
-<nav class={style.container}>
+<nav class={navClass}>
     <NavButton type="ICONTEXT" src={TrendingIcon} label="트렌딩" href="/trending/week"/>
     <NavButton type="ICONTEXT" src={RecentIcon} label="최신" href="/recent"/>
     <NavButton type="ICONTEXT" src={FeedIcon} label="피드" href="/feed"/>

@@ -4,6 +4,7 @@
     import Button from "../atoms/Button.svelte";
 
     import MoreIcon from "../../assets/icon/more.svg"
+    import Dropdown from "../atoms/Dropdown.svelte";
     const style = {
         container: css`
             display: flex;
@@ -18,7 +19,7 @@
 <div class={style.container}>
     <TabBar/>
     <div>
-        dropdown
+        <Dropdown/>
         <Button src={MoreIcon} label="더보기" onClick={()=>{}}/>
     </div>
 </div>
