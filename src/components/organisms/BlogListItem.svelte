@@ -8,7 +8,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            background-color: white;
+            background-color: #fff;
             box-shadow: 0 4px 16px 0 rgba(0,0,0,.04);
             transition: box-shadow .25s ease-in, transform .25s ease-in;
             &:hover{

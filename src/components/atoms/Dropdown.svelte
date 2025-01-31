@@ -13,7 +13,7 @@
             font-size: 12px;
             font-weight: 600;
             color: #495057;
-            background: white;
+            background: #fff;
             box-shadow: 0 0 4px rgba(0,0,0,.05);
             >span{
                 line-height: 24px;
